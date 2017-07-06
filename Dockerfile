@@ -21,5 +21,6 @@ RUN echo 'export PATH=$PATH:/usr/lib/oracle/12.2/client64/bin' >> ~/.bashrc
 RUN echo 'export ORACLE_HOME=/usr/lib/oracle/12.2/client64' >> ~/.bashrc
 RUN echo 'export OCI_LIB=/usr/lib/oracle/12.2/client64/lib' >> ~/.bashrc
 RUN echo 'export TNS_ADMIN=/usr/lib/oracle/12.2/client64/network/admin' >> ~/.bashrc
+RUN apt-get purge -y alien
 
 RUN rm -rf /var/lib/apt/lists/* /tmp/*.rpm
