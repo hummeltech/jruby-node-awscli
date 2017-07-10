@@ -11,5 +11,5 @@ RUN avn setup
 RUN pip install --upgrade --user awscli
 RUN cat ~/.bash_profile >> ~/.bashrc
 RUN echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
-RUN echo 'eval $(grep -e aws_access_key_id -e aws_secret_access_key  ~/.aws/credentials | sed "s/ //g" | sed "s/aws_access_key_id/AWS_ACCESS_KEY_ID/g" | sed "s/aws_secret_access_key/AWS_SECRET_ACCESS_KEY/g")' >> ~/.bashrc
+RUN echo 'eval $(grep -e aws_access_key_id -e aws_secret_access_key  ~/.aws/credentials | sed "s/ //g" | sed "s/aws_access_key_id/export AWS_ACCESS_KEY_ID/g" | sed "s/aws_secret_access_key/export AWS_SECRET_ACCESS_KEY/g")' >> ~/.bashrc
 RUN rm -rf /var/lib/apt/lists/*
