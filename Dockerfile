@@ -2,9 +2,9 @@ FROM jruby:1.7.26
 
 ENV SHELL=/bin/bash
 
-# Install nodejs, build-essential, git, python-pip, libpython-dev, libyaml-dev, nvm, avn and awscli
+# Install nodejs, build-essential, git, python-pip, libpython-dev, libyaml-dev, xz-utils, nvm, avn and awscli
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
-RUN apt-get install -y nodejs build-essential git python-pip libpython-dev libyaml-dev
+RUN apt-get install -y nodejs build-essential git python-pip libpython-dev libyaml-dev xz-utils
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 RUN npm install --global avn avn-nvm webpack
 RUN avn setup
