@@ -1,4 +1,4 @@
-FROM jruby:9.1.13.0
+FROM jruby:1.7.26
 
 ENV SHELL=/bin/bash
 
