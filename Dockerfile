@@ -12,4 +12,15 @@ RUN pip install --upgrade --user awscli
 RUN cat ~/.bash_profile >> ~/.bashrc
 RUN echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
 RUN echo 'eval $(grep -e aws_access_key_id -e aws_secret_access_key  ~/.aws/credentials | sed "s/ //g" | sed "s/aws_access_key_id/export AWS_ACCESS_KEY_ID/g" | sed "s/aws_secret_access_key/export AWS_SECRET_ACCESS_KEY/g")' >> ~/.bashrc
-RUN rm -rf /var/lib/apt/lists/*
+
+RUN apt-get install -y alien libaio1
+COPY oracle-instantclient12.2-*.rpm /tmp/
+RUN alien -i /tmp/oracle-instantclient12.2-*.rpm
+RUN echo '/usr/lib/oracle/12.2/client64/lib' > /etc/ld.so.conf.d/oracle.conf && ldconfig
+RUN echo 'export PATH=$PATH:/usr/lib/oracle/12.2/client64/bin' >> ~/.bashrc
+RUN echo 'export ORACLE_HOME=/usr/lib/oracle/12.2/client64' >> ~/.bashrc
+RUN echo 'export OCI_LIB=/usr/lib/oracle/12.2/client64/lib' >> ~/.bashrc
+RUN echo 'export TNS_ADMIN=/usr/lib/oracle/12.2/client64/network/admin' >> ~/.bashrc
+RUN apt-get purge -y alien
+
+RUN rm -rf /var/lib/apt/lists/* /tmp/*.rpm
